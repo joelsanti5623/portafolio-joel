@@ -1,0 +1,457 @@
+/* ==========================================
+   VARIABLES GLOBALES - Colores y tamaños
+   ========================================== */
+
+:root {
+    --color-primary: #00ff00;
+    --color-secondary: #00ffff;
+    --color-dark: #0a0e27;
+    --color-darker: #050a1a;
+    --color-text: #ffffff;
+    --color-border: #00ff0040;
+    --shadow-glow: 0 0 20px rgba(0, 255, 0, 0.5);
+    --transition: all 0.3s ease;
+}
+
+
+/* ==========================================
+   RESET - Limpiar estilos del navegador
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   BODY - Fondo y tipografía general
+   ========================================== */
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   NAVBAR - La barra de navegación superior
+   ========================================== */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(to bottom, var(--color-darker), transparent);
+    border-bottom: 2px solid var(--color-primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-glow);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-shadow: 0 0 10px var(--color-primary);
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    text-shadow: 0 0 10px var(--color-primary);
+}
+
+/* ==========================================
+   HERO - Sección principal
+   ========================================== */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--color-darker), var(--color-dark));
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    animation: faceInUp 1s ease-out;
+}
+
+.terminal-text {
+    background: rgb(0, 255, 0, 0.05);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-glow);
+}
+
+.line {
+    color: var(--color-primary);
+    margin: 0.5rem 0;
+    font-weight: 1rem;
+}
+
+.response {
+    color: var(--color-secondary);
+    margin: 0.5rem 0;
+    margin-left: 1rem;
+}
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid var(--color-primary);
+    margin: 2rem 0;
+    box-shadow: 0 0 30px var(--color-primary);
+    transition: var(--transition);
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px var(--color-primary);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin: 1rem 0;
+    color: var(--color-text);
+    text-shadow: 0 0 20px var(--color-primary);
+    animation: glow 2s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px var(--color-secondary);
+}
+
+.cta-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-darker);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: 0 0 20px var(--color-primary);
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-darker);
+}
+
+/* ==========================================
+   SECTIONS - Estilos generales de secciones
+   ========================================== */
+
+section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 15px var(--color-primary);
+    text-align: center;
+}
+
+/* ==========================================
+   ABOUT - Sección "Sobre mí"
+   ========================================== */
+
+.about {
+    background: linear-gradient(135deg, var(--color-darker), var(--color-dark));
+    border-top: 2px solid var(--color-primary);
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    line-height: 1.8;
+}
+
+.highlight {
+    color: var(--color-secondary);
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--color-secondary);
+}
+
+/* ==========================================
+   SKILLS - Grid de habilidades
+   ========================================== */
+
+.skills {
+    background: var(--color-dark);
+    border-top: 2px solid var(--color-secondary);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: rgba(0, 255, 0, 0.05);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.skill-card:hover {
+    background: rgba(0, 255, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px var(--color-primary);
+    border-color: var(--color-secondary);
+}
+
+.skill-card h3 {
+    color: var(--color-primary);
+    font-size: 1.3rem;
+}
+
+/* ==========================================
+   PROJECTS - Grid de proyectos
+   ========================================== */
+
+.projects {
+    background: linear-gradient(135deg, var(--color-darker), var(--color-dark));
+    border-top: 2px solid var(--color-primary);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* ==========================================
+   CONTACT - Sección de contacto
+   ========================================== */
+
+.contact {
+    background: var(--color-dark);
+    border-top: 2px solid var(--color-secondary);
+    text-align: center;
+}
+
+.contact-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+}
+
+.contact-link {
+    display: inline-block;
+    margin: 0 1rem;
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-weight: bold;
+}
+
+.contact-link:hover {
+    background: var(--color-primary);
+    color: var(--color-darker);
+    box-shadow: 0 0 30px var(--color-primary);
+}
+
+/* ==========================================
+   CONTACT - Sección de contacto
+   ========================================== */
+
+.footer {
+    background: var(--color-darker);
+    text-align: center;
+    padding: 2rem;
+    border-top: 2px solid var(--color-primary);
+    color: var(--color-text);
+}
+
+/* ==========================================
+   ANIMACIONES
+   ========================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 20px var(--color-primary);
+    }
+    50% {
+        text-shadow: 0 0 40px var(--color-primary), 0 0 60px var(--color-secondary);
+    }
+}
+
+/* ==========================================
+   RESPONSIVE - Para celulares
+   ========================================== */
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   PROJECT CARDS - Tarjetas de proyectos
+   ========================================== */
+
+.projects-card {
+    background: rgba(0, 255, 0, 0.05);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.project-card:hover::before {
+    left: 100%;
+}
+
+.project-card h3 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-card p {
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-link {
+    flex: 1;
+    padding: 0.8rem;
+    background: transparent;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    text-decoration: none;
+    text-align: center;
+    border-radius: 6px;
+    transition: var(--transition);
+    font-weight: bold;
+}
+
+.project-link:hover {
+    background: var(--color-primary);
+    color: var(--color-darker);
+    box-shadow: 0 0 20px var(--color-primary);
+}
+
+.project-link.github:hover {
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-darker);
+    box-shadow: 0 0 20px var(--color-secondary);
+}
