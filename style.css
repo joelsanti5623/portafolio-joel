@@ -101,7 +101,7 @@ body {
     text-align: center;
     max-width: 800px;
     padding: 2rem;
-    animation: faceInUp 1s ease-out;
+    animation: fadeInUp 1s ease-out;
 }
 
 .terminal-text {
@@ -118,7 +118,7 @@ body {
 .line {
     color: var(--color-primary);
     margin: 0.5rem 0;
-    font-weight: 1rem;
+    font-weight: bold;
 }
 
 .response {
@@ -371,7 +371,7 @@ section {
    PROJECT CARDS - Tarjetas de proyectos
    ========================================== */
 
-.projects-card {
+.project-card {
     background: rgba(0, 255, 0, 0.05);
     border: 2px solid var(--color-primary);
     border-radius: 8px;
@@ -454,4 +454,21 @@ section {
     border-color: var(--color-secondary);
     color: var(--color-darker);
     box-shadow: 0 0 20px var(--color-secondary);
+}
+
+/* ==========================================
+   CURSOR DE LA TERMINAL
+   ========================================== */
+
+.escribiendo::after {
+    content: '█';
+    color: var(--color-primary);
+    margin-left: 4px;
+    animation: parpadeo 0.8s steps(1) infinite;
+}
+
+@keyframes parpadeo {
+    50% {
+        opacity: 0;
+    }
 }

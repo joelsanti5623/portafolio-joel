@@ -100,37 +100,6 @@ if (ctaBtn) {
 }
 
 /* ==========================================
-   EFECTO FOTO DE PERFIL
-   ========================================== */
-
-const profilePic = document.querySelector('.profile-pic');
-if (profilePic) {
-    profilePic.addEventListener('mouseenter', () => {
-        profilePic.style.boxShadow = '0 0 60px rgba(0, 255, 0, 0.8)';
-    });
-
-    profilePic.addEventListener('mouseleave', () => {
-        profilePic.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.5)';
-    });
-}
-
-/* ==========================================
-   EFECTO SKILLS
-   ========================================== */
-
-document.querySelectorAll('.skill-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-8px) scale(1.05)';
-        card.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.8)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-        card.style.boxShadow = 'none';
-    });
-});
-
-/* ==========================================
    SCROLL - DETECTAR POSICION
    ========================================== */
 
@@ -141,7 +110,7 @@ window.addEventListener('scroll', () => {
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         
-        if (pageYOffset >= sectionTop - 60) {
+        if (window.scrollY >= sectionTop - 60) {
             current = section.getAttribute('id');
         }
     });
@@ -161,9 +130,49 @@ window.addEventListener('scroll', () => {
 });
 
 /* ==========================================
+   EFECTO TIPEO EN LA TERMINAL
+   ========================================== */
+
+function escribirTerminal() {
+    const lineas = document.querySelectorAll('.terminal-text p');
+    const textos = [];
+
+    lineas.forEach(linea => {
+        textos.push(Array.from(linea.textContent));
+        linea.textContent = '';
+    });
+
+    let i = 0;
+
+    function escribirLinea() {
+        if (i >= lineas.length) return;
+
+        if (i > 0) lineas[i - 1].classList.remove('escribiendo');
+        lineas[i].classList.add('escribiendo');
+
+        let j = 0;
+        const intervalo = setInterval(() => {
+            lineas[i].textContent += textos[i][j];
+            j++;
+
+            if (j >= textos[i].length) {
+                clearInterval(intervalo);
+                i++;
+                setTimeout(escribirLinea, 400);
+            }
+        }, 50);
+    }
+
+    escribirLinea();
+}
+
+/* ==========================================
    EJECUTAR AL CARGAR
    ========================================== */
 
-document.addEventListener('DOMContentLoaded', cargarProyectos);
+document.addEventListener('DOMContentLoaded', () => {
+    cargarProyectos();
+    escribirTerminal();
+});
 
 console.log('✅ Portafolio listo - Joel Santiago');
