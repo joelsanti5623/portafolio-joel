@@ -41,16 +41,18 @@ body {
    ========================================== */
 
 .navbar {
+    position: fixed; /* Esto hace que se quede estática arriba al hacer scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Para que siempre esté por encima de las demás cosas y del canvas Matrix */
+    background: rgba(10, 15, 13, 0.9); /* Fondo semi-transparente oscuro para que el texto se lea bien */
+    backdrop-filter: blur(8px); /* Efecto difuminado moderno estilo cristal */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem;
-    background: linear-gradient(to bottom, var(--color-darker), transparent);
-    border-bottom: 2px solid var(--color-primary);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: var(--shadow-glow);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2); /* Una línea neón sutil abajo */
 }
 
 .logo {
@@ -471,4 +473,216 @@ section {
     50% {
         opacity: 0;
     }
+}
+
+/* ==========================================
+   ESTILOS PARA EL MENÚ HAMBURGUESA
+   ========================================== */
+
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--color-darker);
+        border-bottom: 2px solid var(--color-primary);
+        padding: 1rem 0;
+        text-align: center;
+        box-shadow: var(--shadow-glow);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 0.8rem 0;
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================
+   ESTILOS PARA LOS BOTONES DEL HERO
+   ========================================== */
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+/* Estilo general para ambos botones */
+.cta-btn {
+    background: var(--color-primary);
+    color: var(--color-darker);
+    padding: 0.8rem 1.8rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px var(--color-primary);
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    background: transparent;
+    color: var(--color-primary);
+    box-shadow: 0 0 25px var(--color-primary);
+}
+
+/* Estilo específico para el segundo botón (Hoja de Vida) para que luzca brillante y no negro */
+.secondary-btn {
+    background: rgba(0, 255, 65, 0.1); /* Un fondito sutil verdoso para que resalte */
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+}
+
+.secondary-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-darker);
+    box-shadow: 0 0 25px var(--color-primary);
+}
+
+/* ==========================================
+   ANIMACIONES AL HACER SCROLL (SCROLL REVEAL)
+   ========================================== */
+
+/* Estado inicial: oculto y desplazado hacia abajo */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Estado activo: visible y en su posición original */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================
+   FONDO ANIMADO MATRIX (CANVAS)
+   ========================================== */
+
+.hero {
+    position: relative;
+    overflow: hidden; /* Evita barras de scroll innecesarias */
+}
+
+#matrixCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Muy importante: negativo para que quede al fondo de todo */
+    opacity: 0.25; /* Un poco más sutil para que no opaque los textos de las demás secciones */
+    pointer-events: none; /* Para que no afecte los clics */
+}
+
+/* Asegurar que el contenido del hero esté por encima del canvas */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================
+   BARRA DE PROGRESO DE SCROLL (NEÓN)
+   ========================================== */
+
+#scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%; /* Empieza en 0% */
+    height: 4px; /* Grosor elegante */
+    background: var(--color-primary, #00FF41);
+    box-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41; /* Efecto láser brillante */
+    z-index: 1001; /* Por encima de la barra de navegación */
+    transition: width 0.1s linear;
+}
+
+/* ==========================================
+   ESTILOS DE HABILIDADES CON BARRAS
+   ========================================== */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.skill-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 1.2rem;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.skill-info h3 {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin: 0;
+    font-family: monospace;
+}
+
+.skill-percentage {
+    font-family: monospace;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.skill-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+.skill-progress {
+    height: 100%;
+    background: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary);
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
 }

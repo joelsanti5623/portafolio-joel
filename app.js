@@ -6,7 +6,7 @@ const projects = [
     {
         id: 1,
         title: 'Para Mi Reina Hermosa',
-        description: 'Web romántica con 15 secciones (Mensajes, Diario, Fotos, Canciones, etc). Una experiencia completa para tu amor. ❤️‍🩹',
+        description: 'Plataforma web modular con más de 15 secciones interactivas, gestión de experiencias dinámicas, componentes personalizados y diseño responsivo. ✨',
         tech: ['HTML5', 'CSS3', 'JavaScript'],
         link: 'https://joelsanti5623.github.io/para-mi-reina-hermosa/',
         repo: 'https://github.com/joelsanti5623/para-mi-reina-hermosa'
@@ -21,12 +21,21 @@ const projects = [
     },
     {
         id: 3,
+        title: 'Al fogolar - Restaurante',
+        description: 'Aplicación web desarrollada para el restaurante de fusión italiano-santandereano en Barichara. Gestión de menú, secciones interactivas y diseño responsivo. 🍝',
+        tech: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'MySQL'],
+        link: ' https://joelsanti5623.github.io/web--restaurante/',
+        repo: 'https://github.com/joelsanti5623/web--restaurante'
+    },
+    {
+        id: 4,
         title: 'Ejercicios',
         description: 'Repo con ejercicios de programación y rutinas. Código limpio y bien documentado. 💪',
         tech: ['Git'],
         link: 'https://github.com/joelsanti5623/ejercicios',
         repo: 'https://github.com/joelsanti5623/ejercicios'
     }
+
 ];
 
 /* ==========================================
@@ -176,3 +185,109 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 console.log('✅ Portafolio listo - Joel Santiago');
+
+/* ==========================================
+   MENÚ HAMBURGUESA MÓVIL
+   ========================================== */
+
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer clic en cualquier enlace
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+}
+
+/* ==========================================
+   OBSERVADOR PARA ANIMACIONES AL HACER SCROLL
+   ========================================== */
+
+const observerOptions = {
+    root: null,
+    threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Si quieres que la animación solo ocurra una vez, descomenta la siguiente línea:
+            // observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Seleccionar todos los elementos con la clase .reveal
+document.querySelectorAll('.reveal').forEach(element => {
+    observer.observe(element);
+});
+
+/* ==========================================
+   EFECTO MATRIX EN CANVAS (GLOBAL)
+   ========================================== */
+
+const canvas = document.getElementById('matrixCanvas');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const characters = '01ABCDEFGHIJKLMNOPQRSTUVWXYZｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘ';
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    function drawMatrix() {
+        ctx.fillStyle = 'rgba(10, 15, 13, 0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#00FF41';
+        ctx.font = `${fontSize}px monospace`;
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = characters.charAt(Math.floor(Math.random() * characters.length));
+            const x = i * fontSize;
+            const y = drops[i] * fontSize;
+
+            ctx.fillText(text, x, y);
+
+            if (y > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    setInterval(drawMatrix, 33);
+}
+
+/* ==========================================
+   LÓGICA DE LA BARRA DE PROGRESO DE SCROLL
+   ========================================== */
+
+const progressBar = document.getElementById('scrollProgress');
+
+if (progressBar) {
+    window.addEventListener('scroll', () => {
+        // Altura total scrolleable de la página
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        // Posición actual del scroll
+        const progress = (window.scrollY / totalHeight) * 100;
+        
+        // Actualizar el ancho en %
+        progressBar.style.width = `${progress}%`;
+    });
+}
