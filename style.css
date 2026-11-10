@@ -129,19 +129,26 @@ body {
     margin-left: 1rem;
 }
 
+/* ==========================================
+   FOTO DE PERFIL (CUADRO MATRIX / HACKER)
+   ========================================== */
+
 .profile-pic {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 3px solid var(--color-primary);
-    margin: 2rem 0;
-    box-shadow: 0 0 30px var(--color-primary);
-    transition: var(--transition);
+    width: 170px;
+    height: 170px;
+    object-fit: cover; /* Mantiene la proporción de la foto sin deformarla */
+    border-radius: 12px; /* Esquinas sutilmente redondeadas en vez de círculo */
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3), inset 0 0 10px rgba(0, 255, 65, 0.2);
+    margin: 1.5rem 0;
+    transition: all 0.4s ease;
+    cursor: pointer;
 }
 
+/* Efecto al pasar el cursor */
 .profile-pic:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 50px var(--color-primary);
+    transform: scale(1.04) rotate(1deg); /* Ligero enfoque y giro */
+    box-shadow: 0 0 25px var(--color-primary); /* Resplandor neón intenso */
 }
 
 .hero h1 {
@@ -685,4 +692,306 @@ section {
     box-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary);
     border-radius: 4px;
     transition: width 1s ease-in-out;
+}
+
+/* ==========================================
+   ESTILOS DE FILTROS Y PROYECTOS
+   ========================================== */
+
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: monospace;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--color-primary);
+    color: var(--color-darker);
+    box-shadow: 0 0 15px var(--color-primary);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.project-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Clase para ocultar tarjetas al filtrar */
+.project-card.hide {
+    display: none;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+}
+
+.project-info h3 {
+    color: var(--color-primary);
+    font-family: monospace;
+    margin-bottom: 0.5rem;
+}
+
+.project-info p {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.project-tags span {
+    font-size: 0.8rem;
+    font-family: monospace;
+    background: rgba(0, 255, 65, 0.1);
+    color: var(--color-primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+/* ==========================================
+   TERMINAL INTERACTIVA
+   ========================================== */
+
+.terminal-container {
+    background: rgba(10, 15, 13, 0.95);
+    border: 1px solid var(--color-primary, #00FF41);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+    overflow: hidden;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.terminal-header {
+    background: rgba(0, 255, 65, 0.1);
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+}
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.terminal-title {
+    color: #888;
+    font-size: 0.85rem;
+    margin-left: 10px;
+}
+
+.terminal-body {
+    padding: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+}
+
+.terminal-body p {
+    margin: 0.3rem 0;
+    line-height: 1.4;
+}
+
+.prompt {
+    color: var(--color-primary, #00FF41);
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.cmd-highlight {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem 1rem 1rem;
+}
+
+#terminalInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+/* ==========================================
+   ESTILOS DE LÍNEA DE TIEMPO (FORMACIÓN)
+   ========================================== */
+
+.education {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding-left: 2rem;
+}
+
+/* Línea vertical central de neón */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: rgba(0, 255, 65, 0.3);
+    box-shadow: 0 0 10px var(--color-primary);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+/* Punto indicador en la línea */
+.timeline-dot {
+    position: absolute;
+    left: -2.35rem;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    background: var(--color-darker, #0a0f0d);
+    border: 2px solid var(--color-primary, #00FF41);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--color-primary);
+}
+
+/* Tarjeta de contenido de la formación */
+.timeline-content {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 1.2rem;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+}
+
+.timeline-content h3 {
+    color: var(--color-primary);
+    font-family: monospace;
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.timeline-date {
+    font-size: 0.85rem;
+    font-family: monospace;
+    color: #888;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* ==========================================
+   ESTILOS DE SELECTOR DE TEMAS DIRECTO
+   ========================================== */
+
+.theme-selector {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.theme-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ccc;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    border-color: var(--color-primary);
+    color: #fff;
+}
+
+.theme-btn.active {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
+    font-weight: bold;
+}
+
+/* --- VARIABLES DE LOS 3 TEMAS --- */
+:root {
+    --color-primary: #00FF41; /* Tema Original Verde */
+}
+
+body.theme-gold {
+    --color-primary: #FFD700; /* Tema Negro / Dorado */
+}
+
+body.theme-red {
+    --color-primary: #FF0033; /* Tema Rojo / Blanco */
 }

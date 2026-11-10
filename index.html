@@ -15,12 +15,22 @@
     <!-- HEADER / NAVBAR -->
     <header class="navbar">
         <div class="logo">&lt; JS /&gt;</div>
+        
+        <!-- Selector de 3 Temas Directos -->
+        <div class="theme-selector">
+            <button class="theme-btn active" data-theme="default" title="Tema Verde Hacker">💚 Verde</button>
+            <button class="theme-btn" data-theme="gold" title="Tema Negro y Dorado">👑 Dorado</button>
+            <button class="theme-btn" data-theme="red" title="Tema Rojo y Blanco">🔥 Rojo</button>
+        </div>
+
         <!-- Botón hamburguesa -->
         <div class="menu-toggle" id="menuToggle">☰</div>
+
         <nav class="nav-menu" id="navMenu">
             <a href="#home" class="nav-link">INICIO</a>
             <a href="#about" class="nav-link">SOBRE MI</a>
             <a href="#skills" class="nav-link">HABILIDADES</a>
+            <a href="#education" class="nav-link">FORMACIÓN</a>
             <a href="#projects" class="nav-link">PROYECTOS</a>
             <a href="#contact" class="nav-link">CONTACTO</a>
         </nav>
@@ -29,11 +39,22 @@
     <!-- HERO SECTION -->
     <section id="home" class="hero reveal">
         <div class="hero-content">
-            <div class="terminal-text">
-                <p class="line">$ ¿quién soy?</p>
-                <p class="response">Joel Santiago Carreño Vargas</p>
-                <p class="line">$ Bienvenidos ami portafolio</p>
-                <p class="response">Bienvenido 🚀</p>
+            <!-- TERMINAL INTERACTIVA -->
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-title">joel@developer:~</span>
+                </div>
+                <div class="terminal-body" id="terminalOutput">
+                    <p class="line"><span class="prompt">joel@dev:~$</span> welcome</p>
+                    <p class="response">¡Bienvenido a mi portafolio! Escribe <span class="cmd-highlight">'help'</span> para ver la lista de comandos disponibles.</p>
+                </div>
+                <div class="terminal-input-line">
+                    <span class="prompt">joel@dev:~$</span>
+                    <input type="text" id="terminalInput" autocomplete="off" spellcheck="false" placeholder="escribe un comando..." autofocus>
+                </div>
             </div>
             <img src="assets/img/profile.jpg" alt="Joel" class="profile-pic">
             <h1>DESARROLLADOR WEB</h1>
@@ -120,11 +141,96 @@
         </div>
     </section>
 
+    <!-- EDUCATION / FORMACIÓN SECTION -->
+    <section id="education" class="education reveal">
+        <h2 class="section-title">&lt; FORMACIÓN /&gt;</h2>
+        
+        <div class="timeline">
+            
+            <!-- Item 1: Campuslands -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Campuslands</h3>
+                    <span class="timeline-date">2026 - Presente</span>
+                    <p>Formación intensiva en desarrollo de software Full-Stack, arquitectura de sistemas y buenas prácticas de programación.</p>
+                </div>
+            </div>
+
+            <!-- Item 2: IBM Cognitive Class -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>IBM Cognitive Class</h3>
+                    <span class="timeline-date">Certificaciones Tecnológicas</span>
+                    <p>Capacitaciones especializadas en herramientas digitales, bases de datos y tecnologías de la información.</p>
+                </div>
+            </div>
+
+            <!-- Item 3: Infortec -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Infortec</h3>
+                    <span class="timeline-date">2026</span>
+                    <p>Validación de estudios secundarios (Bachiller Académico) en San Gil, Santander.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- PROJECTS SECTION -->
     <section id="projects" class="projects reveal">
         <h2 class="section-title">&lt; PROYECTOS /&gt;</h2>
+        
+        <!-- Botones de Filtro -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="solo">Trabajos solo</button>
+            <button class="filter-btn" data-filter="equipo">Trabajos en equipo</button>
+            <button class="filter-btn" data-filter="mysql">MySQL</button>
+            <button class="filter-btn" data-filter="python">Python</button>
+            <button class="filter-btn" data-filter="git">Git</button>
+            <button class="filter-btn" data-filter="pseint">PseInt</button>
+        </div>
+
+        <!-- Cuadrícula de Proyectos -->
         <div class="projects-grid">
-            <!-- Los proyectos van aqui -->
+            
+            <!-- Proyecto 1: Web -->
+            <div class="project-card" data-category="web">
+                <div class="project-info">
+                    <h3>Al Fogolar</h3>
+                    <p>Plataforma web full-stack para restaurante con menú dinámico y conversor de moneda.</p>
+                    <div class="project-tags">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 2: Backend / Base de Datos -->
+            <div class="project-card" data-category="backend">
+                <div class="project-info">
+                    <h3>Eventos Premier S.A.S.</h3>
+                    <p>Sistema de reservas de eventos con funciones almacenadas, triggers y vistas relacionales en MySQL.</p>
+                    <div class="project-tags">
+                        <span>MySQL</span><span>SQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 3: Web -->
+            <div class="project-card" data-category="web">
+                <div class="project-info">
+                    <h3>Para Mi Reina Hermosa</h3>
+                    <p>Aplicación web modular interactiva con galerías de fotos y notas personales.</p>
+                    <div class="project-tags">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
