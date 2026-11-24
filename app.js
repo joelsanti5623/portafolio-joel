@@ -504,3 +504,41 @@ themeButtons.forEach(btn => {
         // Si es 'default', se queda con el verde original por defecto
     });
 });
+
+/* ==========================================
+    FORMULARIO DE CONTACTO (n8n, Web3Forms)
+    ========================================== */
+
+const FORM_URL = 'https://api.web3forms.com/submit';
+const form = document.getElementById('form-contacto');
+const estado = document.getElementById('form-estado');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const boton = form.querySelector('button');
+    boton.disabled = true;
+    estado.textContent = 'Enviando...';
+
+    const datos = Object.fromEntries(new FormData(form));
+
+    try {
+        const r = await fetch(FORM_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(datos)
+        });
+        const resultado = await r.json();
+        if (!resultado.success) throw new Error(resultado.message);
+
+        estado.textContent = '✅ ¡Mensaje enviado! Te respondo pronto.';
+        form.reset();
+    } catch (err) {
+        estado.textContent = '❌ No se pudo enviar. Intenta de nuevo o escríbeme por WhatsApp.';
+        console.error(err);
+    } finally {
+        boton.disabled = false;
+    }
+});
